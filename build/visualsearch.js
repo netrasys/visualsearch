@@ -209,7 +209,7 @@ VS.ui.SearchBox = Backbone.View.extend({
   // Renders a newly added facet, and selects it.
   addedFacet : function (model) {
     this.renderFacets();
-    var facetView = _.detect(this.facetViews, function(view) {
+    var facetView = _.find(this.facetViews, function(view) {
       if (view.model == model) return true;
     });
 
@@ -339,7 +339,7 @@ VS.ui.SearchBox = Backbone.View.extend({
 
     if (this.$(e.target).is('.category,input')) {
       var el   = $(e.target).closest('.search_facet,.search_input');
-      var view = _.detect(this.facetViews.concat(this.inputViews), function(v) {
+      var view = _.find(this.facetViews.concat(this.inputViews), function(v) {
         return v.el == el[0];
       });
       if (view.type == 'facet') {
@@ -504,7 +504,7 @@ VS.ui.SearchBox = Backbone.View.extend({
   // User is no longer focused on anything in the search box.
   removeFocus : function() {
     this.app.options.callbacks.blur();
-    var focus = _.any(this.facetViews.concat(this.inputViews), function(view) {
+    var focus = _.some(this.facetViews.concat(this.inputViews), function(view) {
       return view.isFocused();
     });
     if (!focus) this.$('.VS-search-box').removeClass('VS-focus');
@@ -1314,7 +1314,7 @@ VS.ui.SearchInput = Backbone.View.extend({
         if (prefix.label) return prefix.label;
         else              return prefix;
       });
-      if (_.contains(labels, query)) {
+      if (_.includes(labels, query)) {
         e.preventDefault();
         var remainder = this.addTextFacetRemainder(query);
         var position  = this.options.position + (remainder?1:0);
@@ -1841,7 +1841,7 @@ VS.model.SearchFacet = Backbone.Model.extend({
 
     if (!value) return '';
 
-    if (!_.contains(this.get("app").options.unquotable || [], category) && category != remainder) {
+    if (!_.includes(this.get("app").options.unquotable || [], category) && category != remainder) {
       value = this.quoteValue(value);
     }
 
