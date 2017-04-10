@@ -17,7 +17,7 @@ $(document).ready(function() {
         console.log('Value match:', facet, searchTerm);
         switch(facet) {
           case "Brands":
-            callback(dataSource.BRANDS)
+            callback()
             break;
         }
       }
