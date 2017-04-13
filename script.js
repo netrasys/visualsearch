@@ -5,6 +5,7 @@ var addedItems = []
 $(document).ready(function() {
   window.visualSearch = VS.init({
     container : $('.visual_search'),
+    placeholder: "Teste",
     query     : '',
     callbacks : {
       search       : function(query, searchCollection) {
@@ -17,10 +18,27 @@ $(document).ready(function() {
         console.log('Value match:', facet, searchTerm);
         switch(facet) {
           case "Brands":
-            callback()
+            callback(dataSource.BRANDS)
             break;
         }
+      },
+      clearSearch: function(clear) {
+        console.log("Cleaning search:", clear());
       }
     }
   });
+
+  $("#btn-add").click(function() {
+    console.log("Adding adidas");
+    var value = visualSearch.searchBox.value()
+    value += " Brands: Adidas"
+    visualSearch.searchBox.value(value)
+  })
+
+  $("#btn-remove").click(function() {
+    var value = visualSearch.searchBox.value()
+    console.log("Removing adidas", {value: value});
+    value = value.replace('Brands: "Adidas"', "")
+    visualSearch.searchBox.value(value)
+  })
 });
