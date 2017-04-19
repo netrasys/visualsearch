@@ -6,15 +6,14 @@
   <title>DocumentCloud's VisualSearch.js</title>
 
   <link rel="stylesheet" href="build-min/visualsearch-datauri.css" type="text/css" media="screen" charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   
   <style>
     body {
       height: 3000px;
     }
     .visual_search {
-      margin-top: 100px;
-      position: fixed;
-      width: 100%;
+      margin-bottom: 50px;
     }
 
     .VS-search {
@@ -24,7 +23,28 @@
 </head>
 <body>
 
-<div class="visual_search" id="visual-search"></div>
+
+
+
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">tab1</a></li>
+    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">tab2</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">
+      <div class="visual_search" id="visual-search"></div>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+      <div class="visual_search" id="visual-search1"></div>
+    </div>
+  </div>
+
+</div>
 
 <button id="btn-add">Add Adidas</button>
 <button id="btn-remove">Remove adidas</button>
@@ -32,6 +52,7 @@
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
 <script src="build/visualsearch-complete.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script src="script.js"></script>
 
 </body>

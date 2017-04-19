@@ -1,6 +1,6 @@
 'use strict';
 
-var bundleTask = ["concat:visualsearch", "concat:bundle", "uglify"]
+var bundleTask = ["concat:visualsearch", "concat:bundle", "uglify", "watch"]
 module.exports = function(grunt) {
   // Project Configuration
   grunt.initConfig({
@@ -57,7 +57,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-contrib-watch");
 
   // Default task(s).
-  grunt.registerTask("default", ["watch"]);
+  grunt.registerTask("default", bundleTask);
 
 };
 

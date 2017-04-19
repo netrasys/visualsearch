@@ -4525,7 +4525,7 @@ $.widget( "ui.autocomplete", $.ui.autocomplete, {
   if (!VS.utils)  VS.utils  = {};
 
   // Sets the version for VisualSearch to be used programatically elsewhere.
-  VS.VERSION = '0.5.1';
+  VS.VERSION = '0.5.4';
 
   VS.VisualSearch = function(options) {
     var defaults = {
@@ -4536,6 +4536,7 @@ $.widget( "ui.autocomplete", $.ui.autocomplete, {
       remainder   : 'text',
       showFacets  : true,
       readOnly    : false,
+      appendTo    : null,
       callbacks   : {
         search          : $.noop,
         focus           : $.noop,
@@ -4550,7 +4551,7 @@ $.widget( "ui.autocomplete", $.ui.autocomplete, {
     this.options.callbacks = _.extend({}, defaults.callbacks, options.callbacks);
     
     VS.app.hotkeys.initialize();
-    VS.container = this.options.container
+
     this.searchQuery   = new VS.model.SearchQuery();
     this.searchBox     = new VS.ui.SearchBox({
         app: this, 
@@ -5115,7 +5116,7 @@ VS.ui.SearchFacet = Backbone.View.extend({
       source    : _.bind(this.autocompleteValues, this),
       minLength : 0,
       delay     : 0,
-      appendTo  : VS.container,
+      appendTo  : this.options.app.options.appendTo,
       autoFocus : true,
       position  : {offset : "0 5"},
       create    : _.bind(function(e, ui) {
@@ -5255,7 +5256,6 @@ VS.ui.SearchFacet = Backbone.View.extend({
   // the sole focus. It also prepares the autocompletion menu.
   enableEdit : function() {
     if (this.app.options.readOnly) return;
-    console.log("Enable edit..");
     if (this.modes.editing != 'is') {
       this.setMode('is', 'editing');
       this.deselectFacet();
@@ -5539,11 +5539,12 @@ VS.ui.SearchInput = Backbone.View.extend({
   //
   // See `addTextFacetRemainder` for explanation on how the remainder works.
   setupAutocomplete : function() {
+    console.log("Options:", this.options);
     this.box.autocomplete({
       minLength : this.options.showFacets ? 0 : 1,
       delay     : 50,
+      appendTo  : this.options.app.options.appendTo,
       autoFocus : true,
-      appendTo  : VS.container,
       position  : {offset : "0 -1"},
       source    : _.bind(this.autocompleteValues, this),
       // Prevent changing the input value on focus of an option

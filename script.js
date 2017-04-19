@@ -3,9 +3,36 @@ var dataSource = {
 }
 var addedItems = []
 $(document).ready(function() {
-  window.visualSearch = VS.init({
-    container : $('.visual_search'),
+  VS.init({
+    container : $('#visual-search'),
     placeholder: "Teste",
+    appendTo: ".nav-tabs",
+    query     : '',
+    callbacks : {
+      search       : function(query, searchCollection) {
+        console.log("Search:", query, searchCollection);
+      },
+      facetMatches : function(callback) {
+        callback(["Brands", "Context", "Human"])
+      },
+      valueMatches : function(facet, searchTerm, callback) {
+        console.log('Value match:', facet, searchTerm);
+        switch(facet) {
+          case "Brands":
+            callback(dataSource.BRANDS)
+            break;
+        }
+      },
+      clearSearch: function(clear) {
+        console.log("Cleaning search:", clear());
+      }
+    }
+  });
+
+  VS.init({
+    container : $('#visual-search1'),
+    placeholder: "Teste",
+    appendTo: "body",
     query     : '',
     callbacks : {
       search       : function(query, searchCollection) {
