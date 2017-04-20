@@ -24,7 +24,7 @@
   if (!VS.utils)  VS.utils  = {};
 
   // Sets the version for VisualSearch to be used programatically elsewhere.
-  VS.VERSION = '0.5.4';
+  VS.VERSION = '0.5.5';
 
   VS.VisualSearch = function(options) {
     var defaults = {
@@ -1038,7 +1038,6 @@ VS.ui.SearchInput = Backbone.View.extend({
   //
   // See `addTextFacetRemainder` for explanation on how the remainder works.
   setupAutocomplete : function() {
-    console.log("Options:", this.options);
     this.box.autocomplete({
       minLength : this.options.showFacets ? 0 : 1,
       delay     : 50,
