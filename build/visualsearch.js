@@ -1052,10 +1052,6 @@ VS.ui.SearchInput = Backbone.View.extend({
       }, this),
       select    : _.bind(function(e, ui) {
         e.preventDefault();
-        // stopPropogation does weird things in jquery-ui 1.9
-        // e.stopPropagation();
-        // var remainder = this.addTextFacetRemainder(ui.item.label || ui.item.value);
-        //  var position  = this.options.position + (remainder ? 1 : 0);
         var position  = this.options.position;
         this.app.searchBox.addFacet(ui.item instanceof String ? ui.item : ui.item.value, '', position);
         return false;
@@ -1151,30 +1147,6 @@ VS.ui.SearchInput = Backbone.View.extend({
         autocomplete.element.outerWidth()
       ));
     }
-  },
-
-  // If a user searches for "word word category", the category would be
-  // matched and autocompleted, and when selected, the "word word" would
-  // also be caught as the remainder and then added in its own facet.
-  addTextFacetRemainder : function(facetValue) {
-    var boxValue = this.box.val();
-    var lastWord = boxValue.match(/\b(\w+)$/);
-
-    if (!lastWord) {
-      return '';
-    }
-
-    var matcher = new RegExp(lastWord[0], "i");
-    if (facetValue.search(matcher) == 0) {
-      boxValue = boxValue.replace(/\b(\w+)$/, '');
-    }
-    boxValue = boxValue.replace('^\s+|\s+$', '');
-
-    if (boxValue) {
-      this.app.searchBox.addFacet(this.app.options.remainder, boxValue, this.options.position);
-    }
-
-    return boxValue;
   },
 
   // Directly called to focus the input. This is different from `addFocus`
@@ -1362,9 +1334,8 @@ VS.ui.SearchInput = Backbone.View.extend({
         e.preventDefault();
         // var remainder = this.addTextFacetRemainder(value);
         var position  = this.options.position;
-        if (value != remainder) {
-            this.app.searchBox.addFacet(value, '', position);
-        }
+        this.app.searchBox.addFacet(value, '', position);
+        
       } else {
         var foundFacet = this.app.searchBox.focusNextFacet(this, 0, {
           skipToFacet: true,

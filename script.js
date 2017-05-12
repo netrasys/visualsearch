@@ -6,6 +6,7 @@ $(document).ready(function() {
   VS.init({
     container : $('#visual-search'),
     placeholder: "Teste",
+    remainder: "Porra",
     appendTo: ".nav-tabs",
     query     : '',
     callbacks : {

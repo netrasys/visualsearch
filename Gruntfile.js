@@ -41,8 +41,7 @@ module.exports = function(grunt) {
       production: {
         options: {
           mangle: true,
-          compress: true,
-          beautify: false
+          compress: true
         },
         files: {
           "build-min/visualsearch-complete.min.js": "build/visualsearch-complete.js"
