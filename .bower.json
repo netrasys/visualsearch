@@ -1,0 +1,43 @@
+{
+  "name": "visualsearch",
+  "version": "0.5.6",
+  "homepage": "http://documentcloud.github.io/visualsearch/",
+  "authors": [
+    "Samuel Clay",
+    "@samuelclay"
+  ],
+  "description": "A Rich Search Box for Real Data",
+  "main": [
+    "build-min/visualsearch-datauri.css",
+    "build-min/visualsearch.css",
+    "build-min/visualsearch.js"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "jquery": ">=1.4",
+    "jquery-ui": ">=1.8",
+    "backbone": ">=0.9.10"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "Rakefile",
+    "vendor",
+    "*.html",
+    "build",
+    "docs",
+    "*.yml"
+  ],
+  "_release": "0.5.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.5.6",
+    "commit": "60fa3d208e36feb94ad4b66e66a0f47c17941797"
+  },
+  "_source": "https://github.com/netrasys/visualsearch.git",
+  "_target": "0.5.6",
+  "_originalSource": "https://github.com/netrasys/visualsearch.git"
+}
